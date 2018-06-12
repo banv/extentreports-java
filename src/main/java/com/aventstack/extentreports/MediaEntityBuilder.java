@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.aventstack.extentreports.model.Media;
 import com.aventstack.extentreports.model.MediaType;
 import com.aventstack.extentreports.model.ScreenCapture;
+import com.aventstack.extentreports.utils.FileUtil;
 
 public class MediaEntityBuilder {
 
@@ -47,10 +48,12 @@ public class MediaEntityBuilder {
     private static MediaEntityBuilder createScreenCapture(String pathOrBase64String, String title, boolean isBase64String) {
         ScreenCapture sc = new ScreenCapture();
         sc.setMediaType(MediaType.IMG);
-        if (isBase64String)
+        if (isBase64String) {
             sc.setBase64String(pathOrBase64String);
-        else
-            sc.setPath(pathOrBase64String);
+        } else {
+//            sc.setPath(pathOrBase64String);
+            sc.setBase64String(FileUtil.readBase64String(pathOrBase64String));
+        }
         
         if (title != null)
             sc.setName(title);

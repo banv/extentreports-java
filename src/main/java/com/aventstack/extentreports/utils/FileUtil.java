@@ -1,6 +1,10 @@
 package com.aventstack.extentreports.utils;
 
 import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 
 public class FileUtil {
     
@@ -30,6 +34,17 @@ public class FileUtil {
     
     public static String getExtension(String filePath) {
         return getExtension(new File(filePath));
+    }
+
+    public static String readBase64String(String path) {
+        try {
+           return Base64.encodeBase64String(FileUtils
+                    .readFileToByteArray(new File(path)));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
     
 }

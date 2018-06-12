@@ -5,8 +5,11 @@ public class ScreenCapture extends Media {
     private static final long serialVersionUID = -3413285738443448335L;
 
     public String getSource() {
-        if (getBase64String() != null)
-            return "<br/><a href='" + getScreenCapturePath() + "' data-featherlight='image'><span class='label grey white-text'>base64-img</span></a>";
+        if (getBase64String() != null) {
+            return "<br/><a href='" + getScreenCapturePath() + "' data-featherlight='image'>"
+                   + "<img width='10%' src='" +getScreenCapturePath() + "' />"
+                   + "</a>";
+            }
 
         return "<img data-featherlight='" + getScreenCapturePath() + "' width='10%' src='" + getScreenCapturePath() + "' data-src='" + getScreenCapturePath() + "'>";
     }
